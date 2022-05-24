@@ -1,0 +1,15 @@
+538_soccer:
+    target: dev
+    outputs:
+          dev:
+            type: redshift
+            host: dbtredshiftcluster-fa1xagzzlkwm.cnlihcmmdxso.us-east-1.redshift.amazonaws.com
+            user: {{ env_var('redshift_username') }}
+            password: {{ env_var('redshift_password') }}
+            port: 5439
+            dbname: dbtworkshop
+            schema: soccer
+            threads: 4
+            keepalives_idle: 240 # default 240 seconds
+            connect_timeout: 10 # default 10 seconds
+            ra3_node: true
