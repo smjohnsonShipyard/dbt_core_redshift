@@ -4,8 +4,8 @@
           dev:
             type: redshift
             host: dbtredshiftcluster-fa1xagzzlkwm.cnlihcmmdxso.us-east-1.redshift.amazonaws.com
-            user: {{ env_var('redshift_username') }}
-            password: {{ env_var('redshift_password') }}
+            user: "{{ env_var('redshift_username') }}"
+            password: "{{ env_var('redshift_password') }}"
             port: 5439
             dbname: dbtworkshop
             schema: soccer
