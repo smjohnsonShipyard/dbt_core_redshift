@@ -1,9 +1,9 @@
-with 
-  qryMatches as ( 
-    SELECT * FROM `dbt-demos.538_football.stg_football_matches` where league = 'Barclays Premier League'
+with
+  qryMatches as (
+    SELECT * FROM {{ ref('stg_football_matches') }} where league = 'Barclays Premier League'
     ),
   qryRankings as (
-    SELECT * FROM `dbt-demos.538_football.stg_football_rankings` where league = 'Barclays Premier League'
+    SELECT * FROM {{ ref('stg_football_rankings') }} where league = 'Barclays Premier League'
   ),
 
   qryFinal as (
@@ -15,11 +15,11 @@ with
       qryMatches.team2,
       team_one.rank as team1_rank,
       team_two.rank as team2_rank
-    from 
+    from
       qryMatches join
-      qryRankings as team_one on 
+      qryRankings as team_one on
         (qryMatches.team1 = team_one.name) join
-      qryRankings as team_two on 
+      qryRankings as team_two on
         (qryMatches.team2 = team_two.name)
   )
 
